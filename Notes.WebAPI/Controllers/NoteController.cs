@@ -15,8 +15,11 @@ using System.Threading.Tasks;
 
 namespace Notes.WebAPI.Controllers
 {
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
+    //[ApiVersionNeutral]
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/{version:apiVersion}/[controller]")]
     public class NoteController : BaseController
     {
         private readonly IMapper _mapper;
@@ -57,7 +60,7 @@ namespace Notes.WebAPI.Controllers
         /// <param name="id">Note id (Guid)</param>
         /// <returns>Returns NoteDetailsVm</returns>
         /// <responce code="200">Succes</responce>
-        /// <responce code="401">If the user is unauthorized</responce
+        /// <responce code="401">If the user is unauthorized</responce>
         [HttpGet("{id}")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -88,7 +91,7 @@ namespace Notes.WebAPI.Controllers
         /// <param name="createNoteDTO">CreateNoteDTO object</param>
         /// <returns>Returns id (Guid)</returns>
         /// <responce code="200">Success</responce>
-        /// <responce code="401">If the user is unauthorized</responce
+        /// <responce code="401">If the user is unauthorized</responce>
         [HttpPost]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
